@@ -1,0 +1,10 @@
+---
+import { Image } from "astro:assets";
+import Navbar from "../molecules/Navbar.astro";
+import logo from "@/assets/logo.svg";
+---
+
+<header class="flex w-full items-center justify-between">
+  <Image src={logo} alt="Logo" class="h-[18px] w-auto" />
+  <Navbar />
+</header>

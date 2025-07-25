@@ -1,0 +1,59 @@
+---
+const { url, label } = Astro.props;
+---
+
+<a
+  href={url}
+  class="navbar-link tracking-wider uppercase transition duration-75 hover:scale-105"
+>
+  {label}
+  <span class="dot"></span>
+</a>
+
+<script type="module" is:inline>
+  function updateActiveLinks() {
+    const hash = window.location.hash;
+    document.querySelectorAll(".navbar-link").forEach((link) => {
+      const href = link.getAttribute("href");
+      if (
+        (href === "/" &&
+          (hash === "" || hash === "#" || window.location.pathname === "/")) ||
+        (href.startsWith("#") && href === hash)
+      ) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+  updateActiveLinks();
+  window.addEventListener("hashchange", updateActiveLinks);
+  window.addEventListener("popstate", updateActiveLinks);
+</script>
+
+<style>
+  .navbar-link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .navbar-link.active {
+    font-weight: 700;
+  }
+  .dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: transparent;
+    margin-top: 2px;
+    transition: background 0.2s;
+  }
+  .navbar-link.active .dot {
+    background: black;
+  }
+</style>
