@@ -8,3 +8,4 @@ export { default as BrushIcon } from "./Brush.astro";
 export { default as WorldIcon } from "./World.astro";
 export { default as RocketIcon } from "./Rocket.astro";
 export { default as BranchAirtableIcon } from "./BranchAirtable.astro";
+export { default as ExternalLinkIcon } from "./ExternalLink.astro";

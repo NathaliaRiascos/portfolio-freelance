@@ -1,0 +1,85 @@
+---
+import type { Project } from "@/types/project";
+import { GithubIcon, ExternalLinkIcon } from "@/icons";
+import { Image } from "astro:assets";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,webp}",
+);
+if (!images[project.image])
+  throw new Error(
+    `"${project.image}" does not exist in glob: "/src/assets/*.{jpeg,jpg,png,webp}"`,
+  );
+---
+
+<article
+  class="group overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-lg"
+>
+  <header class="relative overflow-hidden">
+    <Image
+      src={images[project.image]()}
+      alt={`Vista previa del proyecto ${project.title}`}
+      width={400}
+      height={300}
+      class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+      loading="lazy"
+    />
+  </header>
+
+  <div class="p-6">
+    <h3 class="mb-3 text-xl font-bold text-black">{project.title}</h3>
+    <p class="mb-4 leading-relaxed text-gray-600">{project.description}</p>
+
+    {
+      project.tech.length > 0 && (
+        <ul
+          class="mb-4 flex flex-nowrap gap-2"
+          aria-label="Tecnologías utilizadas"
+        >
+          {project.tech.map((tech) => (
+            <li class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-700">
+              {tech}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <footer class="flex gap-4">
+      {
+        project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            class="flex items-center gap-2 text-sm text-gray-700 transition-colors hover:text-black"
+            aria-label={`Ver proyecto ${project.title}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ExternalLinkIcon class="size-5" />
+            <span>Ver proyecto</span>
+          </a>
+        )
+      }
+      {
+        project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            class="flex items-center gap-2 text-sm text-gray-700 transition-colors hover:text-black"
+            aria-label={`Ver código fuente de ${project.title} en GitHub`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GithubIcon class="size-5" />
+            <span>Código</span>
+          </a>
+        )
+      }
+    </footer>
+  </div>
+</article>

@@ -10,9 +10,9 @@ unicode: "ec1c"
   height="32"
   viewBox="0 0 24 24"
   fill="none"
-  {...Astro.props}
   stroke="currentColor"
-  stroke-width="2"
+  {...Astro.props}
+  stroke-width={Astro.props.strokeWidth || "1" }
   stroke-linecap="round"
   stroke-linejoin="round"
 >
