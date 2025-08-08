@@ -1,0 +1,9 @@
+---
+const { title, desc } = Astro.props;
+---
+
+<article class="max-w-xl space-y-5">
+  <slot name="icon" />
+  <h3 class="text-base font-semibold">{title}</h3>
+  <p class="text-sm leading-relaxed text-gray-600">{desc}</p>
+</article>

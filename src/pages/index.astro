@@ -1,7 +1,7 @@
 ---
-import Header from "@/components/organisms/Header.astro";
 import Layout from "../layouts/Layout.astro";
-import Hero from "@/components/sections/Hero.astro";
+import { Header } from "@/components/organisms";
+import { Hero, Services } from "@/sections";
 ---
 
 <Layout>
@@ -10,6 +10,6 @@ import Hero from "@/components/sections/Hero.astro";
     class="flex w-full flex-col gap-5 px-4 sm:px-10 md:px-[100px] lg:max-w-7xl"
   >
     <Hero />
-    <section id="services" class="h-[200px] bg-blue-200">section 2</section>
+    <Services />
   </main>
 </Layout>

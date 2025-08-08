@@ -1,0 +1,10 @@
+export { default as CloseIcon } from "./Close.astro";
+export { default as CodeIcon } from "./Code.astro";
+export { default as GithubIcon } from "./Github.astro";
+export { default as InstagramIcon } from "./Instagram.astro";
+export { default as LinkedInIcon } from "./LinkedIn.astro";
+export { default as MenuIcon } from "./Menu.astro";
+export { default as BrushIcon } from "./Brush.astro";
+export { default as WorldIcon } from "./World.astro";
+export { default as RocketIcon } from "./Rocket.astro";
+export { default as BranchAirtableIcon } from "./BranchAirtable.astro";

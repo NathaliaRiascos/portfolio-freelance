@@ -1,0 +1,23 @@
+---
+import { CardService } from "../molecules";
+import { SERVICES } from "@/utils/services";
+---
+
+<section id="services">
+  <h2 class="font-roboto mb-2.5 text-center text-3xl font-bold tracking-wide">
+    SERVICIOS QUE OFREZCO
+  </h2>
+  <p class="text-center text-xl tracking-wide text-gray-600">
+    Diseño y desarrollo experiencias web modernas.
+  </p>
+
+  <div class="mt-16 grid w-full grid-cols-1 gap-8 sm:grid-cols-2">
+    {
+      SERVICES.map((service) => (
+        <CardService title={service.title} desc={service.description}>
+          {<service.icon class="size-6" slot="icon" />}
+        </CardService>
+      ))
+    }
+  </div>
+</section>
