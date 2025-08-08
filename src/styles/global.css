@@ -3,8 +3,35 @@
 
 @theme {
   --font-roboto: "Roboto Variable", sans-serif;
+  --color-primary: #000;
 }
 
-.btn-primary {
-  @apply flex h-12 cursor-pointer items-center justify-center rounded-md border-2 border-black px-3 py-2 text-center text-sm leading-5 tracking-wider uppercase transition-colors duration-150 hover:bg-black hover:text-white md:text-base;
+.btn {
+  @apply flex h-10 cursor-pointer items-center justify-center rounded-md px-3 py-2 text-center text-sm leading-5 tracking-wider uppercase transition-colors duration-150 md:text-base;
+}
+
+.btn--primary {
+  @apply bg-primary text-white;
+}
+
+.btn--secondary {
+  @apply border-2 border-black duration-150 hover:bg-black hover:text-white md:text-base;
+}
+
+.success {
+  background-color: #bbf7d0 !important;
+  color: #16a34a !important;
+
+  & .toast-close {
+    color: #16a34a;
+  }
+}
+
+.error {
+  background-color: #fecaca !important;
+  color: #dc2626 !important;
+
+  & .toast-close {
+    color: #dc2626;
+  }
 }

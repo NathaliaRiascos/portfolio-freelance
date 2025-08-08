@@ -1,16 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Header } from "@/components/organisms";
-import { Hero, Projects, Services } from "@/sections";
+import { Contact, Hero, Projects, Services } from "@/sections";
 ---
 
 <Layout>
   <Header />
   <main
-    class="flex w-full flex-col gap-5 px-4 sm:px-10 md:px-[100px] lg:max-w-7xl"
+    class="flex w-full flex-col gap-34 px-4 sm:px-10 md:px-[100px] lg:max-w-7xl"
   >
     <Hero />
     <Services />
     <Projects />
+    <Contact />
   </main>
 </Layout>

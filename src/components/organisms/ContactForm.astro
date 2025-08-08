@@ -1,0 +1,41 @@
+---
+import { Button, Input, TextArea } from "../atoms";
+---
+
+<div class="w-full p-7 lg:max-w-lg">
+  <form class="flex flex-col gap-5">
+    <Input
+      label="Nombre"
+      name="name"
+      placeholder="Ingresa tu nombre"
+      required
+    />
+    <Input
+      label="Email"
+      name="email"
+      type="email"
+      placeholder="to@email.com"
+      required
+      minlength="6"
+    />
+    <Input
+      label="Asusto"
+      name="subject"
+      type="text"
+      placeholder="¿En que puedo ayudarte?"
+      required
+      minlength="6"
+    />
+    <TextArea
+      label="Mensaje"
+      name="message"
+      placeholder="Cuéntame sobre tu proyecto"
+      minlength="6"
+      required
+    />
+    <Button type="submit" class="!w-full" id="btn-submit">Enviar mensaje</Button
+    >
+  </form>
+</div>
+
+<script src="@/scripts/contact.ts"></script>

@@ -1,23 +1,52 @@
 ---
-import Github from "@/icons/Github.astro";
-import Instagram from "@/icons/Instagram.astro";
-import LinkedIn from "@/icons/LinkedIn.astro";
+import { SOCIALMEDIA } from "@/utils/contact-methods";
+import { SocialMediaIcon } from "../atoms";
+import { GithubIcon, LinkedInIcon } from "@/icons";
 ---
 
 <div
+  id="social-icons"
   class="fixed bottom-8 left-6 hidden flex-col space-y-4 text-2xl md:left-8 md:flex md:flex-col md:items-center"
 >
   <div class="h-[110px] w-px bg-gray-300"></div>
-  <a href="#" class="text-gray-600 transition-colors hover:text-black">
-    <LinkedIn class="size-6" />
+  <SocialMediaIcon
+    url={SOCIALMEDIA.linkedin}
+    ariaLabel="Abrir perfil de LinkedIn"
+    variant="ghost"
+  >
+    <LinkedInIcon class="size-6" stroke-width="2" />
     <span class="sr-only">LinkedIn</span>
-  </a>
-  <a href="#" class="text-gray-600 transition-colors hover:text-black">
-    <Github class="size-6" stroke-width="2" />
+  </SocialMediaIcon>
+
+  <SocialMediaIcon
+    url={SOCIALMEDIA.github}
+    ariaLabel="Abrir perfil de GitHub"
+    variant="ghost"
+  >
+    <GithubIcon class="size-6" stroke-width="2" />
     <span class="sr-only">GitHub</span>
-  </a>
-  <a href="#" class="text-gray-600 transition-colors hover:text-black">
-    <Instagram class="size-6" />
-    <span class="sr-only">Instagram</span>
-  </a>
+  </SocialMediaIcon>
 </div>
+
+<script>
+  const socialIcons = document.querySelector("#social-icons");
+  const contactSection = document.querySelector("#contact");
+
+  if (socialIcons && contactSection) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          socialIcons.classList.add("md:hidden");
+        } else {
+          socialIcons.classList.remove("md:hidden");
+        }
+      },
+      {
+        threshold: 0.1,
+      },
+    );
+
+    observer.observe(contactSection);
+  }
+</script>

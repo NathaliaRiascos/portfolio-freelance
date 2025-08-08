@@ -1,0 +1,53 @@
+---
+import { CONTACTMETHODS, SOCIALMEDIA } from "@/utils/contact-methods";
+import { ContactMethod } from "../molecules";
+import ContactForm from "../organisms/ContactForm.astro";
+import { GithubIcon, LinkedInIcon } from "@/icons";
+import { SocialMediaIcon } from "../atoms";
+---
+
+<section id="contact">
+  <h2 class="font-roboto mb-2.5 text-center text-3xl font-bold tracking-wide">
+    CONTACTO
+  </h2>
+  <p class="text-center text-xl tracking-wide text-gray-600">
+    ¿Tienes un proyecto en mente? Me encantaría escuchar sobre él
+  </p>
+
+  <div class="mt-12 flex flex-wrap justify-between gap-8">
+    <div class="flex flex-col gap-8">
+      <h3 class="mb-5 text-lg font-bold">Hablemos</h3>
+
+      <ul class="flex flex-col gap-7">
+        {
+          CONTACTMETHODS.map((method) => (
+            <ContactMethod label={method.label} desc={method.desc}>
+              <method.icon class="size-6" slot="icon" />
+            </ContactMethod>
+          ))
+        }
+      </ul>
+      <div>
+        <p class="mb-4 font-medium text-black">Sígueme en:</p>
+        <div class="flex gap-4">
+          <SocialMediaIcon
+            url={SOCIALMEDIA.linkedin}
+            ariaLabel="Abrir perfil de LinkedIn"
+          >
+            <LinkedInIcon class="size-5" />
+            <span class="sr-only">LinkedIn</span>
+          </SocialMediaIcon>
+
+          <SocialMediaIcon
+            url={SOCIALMEDIA.github}
+            ariaLabel="Abrir perfil de GitHub"
+          >
+            <GithubIcon class="size-5" />
+            <span class="sr-only">GitHub</span>
+          </SocialMediaIcon>
+        </div>
+      </div>
+    </div>
+    <ContactForm />
+  </div>
+</section>

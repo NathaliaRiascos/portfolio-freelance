@@ -1,0 +1,25 @@
+---
+interface Props {
+  url: string;
+  ariaLabel: string;
+  variant?: "default" | "ghost";
+}
+
+const { url, ariaLabel, variant = "default" }: Props = Astro.props;
+
+const variants: Record<"default" | "ghost", string> = {
+  default:
+    "text-primary flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200 transition-colors hover:bg-black hover:text-white",
+  ghost: "text-gray-600 transition-colors hover:text-black",
+};
+---
+
+<a
+  href={url}
+  class={variants[variant]}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={ariaLabel}
+>
+  <slot />
+</a>
