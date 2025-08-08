@@ -4,38 +4,148 @@ import MenuIcon from "@/icons/Menu.astro";
 import NavbarItem from "../atoms/NavbarItem.astro";
 
 const menuItems = [
-  { url: "/", label: "Inicio" },
-  { url: "#servicios", label: "Servicios" },
-  { url: "#proyectos", label: "Proyectos" },
-  { url: "#sobre-mi", label: "Sobre mí" },
-  { url: "#contacto", label: "Contacto" },
+  { url: "#top", label: "Inicio" },
+  { url: "#services", label: "Servicios" },
+  { url: "#projects", label: "Proyectos" },
+  { url: "#about", label: "Sobre mí" },
+  { url: "#contact", label: "Contacto" },
 ];
 ---
 
-<div class="relative">
-  <label for="menu-toggle" class="cursor-pointer md:hidden">
-    <MenuIcon />
-  </label>
+<!-- Botón para abrir menú -->
+<button
+  class="cursor-pointer md:hidden"
+  aria-expanded="false"
+  aria-controls="menu-main"
+  id="btn-open"
+>
+  <MenuIcon />
+  <span class="sr-only">Abrir menú</span>
+</button>
 
-  <input id="menu-toggle" type="checkbox" class="peer hidden" />
-
-  <nav
-    class:list={[
-      "pointer-events-none hidden -translate-y-10 flex-col items-center gap-5",
-      "bg-white opacity-0 transition-all duration-300 ease-in-out",
-      "peer-checked:pointer-events-auto peer-checked:fixed peer-checked:inset-0 peer-checked:flex peer-checked:translate-y-0",
-      "peer-checked:bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]",
-      "peer-checked:py-5 peer-checked:opacity-100",
-      "md:pointer-events-auto md:!static md:inset-auto md:flex md:translate-y-0",
-      "md:flex-row md:justify-end md:!bg-transparent md:!bg-none md:!py-0 md:opacity-100",
-    ]}
+<!-- Menú -->
+<nav
+  id="menu-main"
+  aria-label="Navegación principal"
+  aria-hidden="true"
+  class:list={[
+    "fixed inset-0 z-10 flex h-screen w-full -translate-y-full flex-col justify-center gap-5 bg-white transition-all duration-500 ease-in-out",
+    "md:static md:inset-auto md:h-auto md:w-auto md:translate-y-0 md:flex-row md:justify-end md:bg-transparent",
+  ]}
+>
+  <button
+    class="absolute top-5 right-3 cursor-pointer md:hidden"
+    id="btn-close"
+    aria-controls="menu-main"
   >
-    <label
-      for="menu-toggle"
-      class="mr-6 mb-6 cursor-pointer self-end md:hidden"
-    >
-      <CloseIcon />
-    </label>
-    {menuItems.map((item) => <NavbarItem url={item.url} label={item.label} />)}
-  </nav>
-</div>
+    <CloseIcon />
+    <span class="sr-only">Cerrar menú</span>
+  </button>
+
+  {
+    menuItems.map((item) => (
+      <NavbarItem url={item.url}>{item.label}</NavbarItem>
+    ))
+  }
+</nav>
+
+<style>
+  /* Animación extra si no usas Tailwind para transition */
+  nav {
+    will-change: transform;
+  }
+</style>
+
+<script>
+  const btnOpen = document.querySelector("#btn-open") as HTMLButtonElement;
+  const btnClose = document.querySelector("#btn-close") as HTMLButtonElement;
+  const menu = document.querySelector("#menu-main") as HTMLElement;
+  const menuLinks = menu.querySelectorAll("a");
+
+  function isMobile() {
+    return window.matchMedia("(max-width: 767px)").matches;
+  }
+
+  const updateNavbar = () => {
+    if (isMobile()) {
+      menu?.setAttribute("inert", "");
+    } else {
+      menu?.removeAttribute("inert");
+    }
+  };
+
+  const updateActiveLinks = () => {
+    const hash = window.location.hash || "#top";
+
+    document
+      .querySelectorAll<HTMLAnchorElement>(".navbar-link")
+      .forEach((link) => {
+        const href = link.getAttribute("href");
+        const isActive = href === hash;
+        link.classList.toggle("active", isActive);
+      });
+  };
+
+  function openMenu() {
+    menu.classList.remove("-translate-y-full");
+    menu.classList.add("translate-y-0");
+    menu.removeAttribute("inert");
+    menu.setAttribute("aria-hidden", "false");
+    btnOpen.setAttribute("aria-expanded", "true");
+    //menu.querySelector("a")?.focus();
+    updateActiveLinks();
+  }
+
+  function closeMenu() {
+    menu.classList.remove("translate-y-0");
+    menu.classList.add("-translate-y-full");
+    menu.setAttribute("aria-hidden", "true");
+    menu.setAttribute("inert", "");
+    btnOpen.setAttribute("aria-expanded", "false");
+    updateActiveLinks();
+    btnOpen.focus();
+  }
+  btnOpen?.addEventListener("click", openMenu);
+  btnClose?.addEventListener("click", closeMenu);
+
+  const goToHash = (hash: string) => {
+    if (hash && history.pushState) {
+      history.pushState(null, "", hash);
+    } else if (hash) {
+      window.location.hash = hash;
+    }
+
+    if (hash) {
+      document.querySelector(hash)?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+  // Al
+
+  menuLinks?.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (isMobile()) {
+        const targetId = link.getAttribute("href") as string;
+        e.preventDefault();
+        (document.activeElement as HTMLElement)?.blur();
+        closeMenu();
+        setTimeout(() => goToHash(targetId), 400);
+      }
+    });
+  });
+
+  // Cerrar con tecla ESC
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      btnOpen.getAttribute("aria-expanded") === "true"
+    ) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener("resize", updateNavbar);
+
+  window.addEventListener("hashchange", updateActiveLinks);
+</script>

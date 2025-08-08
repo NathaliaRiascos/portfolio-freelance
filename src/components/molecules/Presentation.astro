@@ -1,0 +1,34 @@
+---
+import NavigateBtn from "../atoms/NavigateBtn.astro";
+---
+
+<div class="flex flex-col items-center gap-8 sm:items-start">
+  <h1
+    class:list={[
+      "font-roboto",
+      "prose",
+      "text-center",
+      "sm:max-w-md",
+      "md:max-w-xl",
+      "text-[30px]",
+      "sm:text-3xl",
+      "md:text-5xl",
+      "leading-tight",
+      "font-bold",
+      "tracking-wider",
+      "uppercase",
+      "sm:text-start",
+    ]}
+  >
+    Hola, soy Nathalia
+    <span class="text-gray-600">Frontend Developer</span>
+  </h1>
+
+  <p
+    class="prose prose-lg max-w-md text-center leading-[26px] tracking-wider text-gray-700 sm:text-start"
+  >
+    Diseño y desarrollo experiencias web modernas, rápidas y accesibles con
+    Astro y React.
+  </p>
+  <NavigateBtn url="#contact">Trabajemos juntos</NavigateBtn>
+</div>

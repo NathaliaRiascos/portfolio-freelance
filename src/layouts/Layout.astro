@@ -1,6 +1,9 @@
 ---
 import "@fontsource-variable/onest";
+import "@fontsource-variable/roboto";
+
 import "../styles/global.css";
+import SocialMedia from "@/components/molecules/SocialMedia.astro";
 
 const { title } = Astro.props;
 ---
@@ -15,9 +18,8 @@ const { title } = Astro.props;
     <title>{title || "Portfolio's Nathalia "}</title>
   </head>
   <body>
-    <div class="w-full lg:max-w-7xl">
-      <slot />
-    </div>
+    <slot />
+    <SocialMedia />
     <!-- <div
       class="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"
     >
@@ -26,8 +28,6 @@ const { title } = Astro.props;
 </html>
 
 <style>
-  @reference "@/styles/global.css";
-
   html {
     scroll-behavior: smooth;
     font-family: "Onest Variable", sans-serif;
@@ -43,7 +43,8 @@ const { title } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     min-height: 100vh;
-    @apply p-4 md:px-10 lg:py-[20px] xl:px-[100px];
+    overflow-x: hidden;
   }
 </style>

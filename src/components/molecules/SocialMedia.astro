@@ -1,0 +1,23 @@
+---
+import Github from "@/icons/Github.astro";
+import Instagram from "@/icons/Instagram.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+---
+
+<div
+  class="fixed bottom-8 left-6 hidden flex-col space-y-4 text-2xl md:left-8 md:flex md:flex-col md:items-center"
+>
+  <div class="h-[110px] w-px bg-gray-300"></div>
+  <a href="#" class="text-gray-600 transition-colors hover:text-black">
+    <LinkedIn />
+    <span class="sr-only">LinkedIn</span>
+  </a>
+  <a href="#" class="text-gray-600 transition-colors hover:text-black">
+    <Github />
+    <span class="sr-only">GitHub</span>
+  </a>
+  <a href="#" class="text-gray-600 transition-colors hover:text-black">
+    <Instagram />
+    <span class="sr-only">Instagram</span>
+  </a>
+</div>

@@ -1,35 +1,14 @@
 ---
-const { url, label } = Astro.props;
+const { url } = Astro.props;
 ---
 
 <a
   href={url}
-  class="navbar-link tracking-wider uppercase transition duration-75 hover:scale-105"
+  class="navbar-link tracking-wider text-gray-500 uppercase outline-transparent transition duration-75 hover:text-black"
 >
-  {label}
+  <slot />
   <span class="dot"></span>
 </a>
-
-<script type="module" is:inline>
-  function updateActiveLinks() {
-    const hash = window.location.hash;
-    document.querySelectorAll(".navbar-link").forEach((link) => {
-      const href = link.getAttribute("href");
-      if (
-        (href === "/" &&
-          (hash === "" || hash === "#" || window.location.pathname === "/")) ||
-        (href.startsWith("#") && href === hash)
-      ) {
-        link.classList.add("active");
-      } else {
-        link.classList.remove("active");
-      }
-    });
-  }
-  updateActiveLinks();
-  window.addEventListener("hashchange", updateActiveLinks);
-  window.addEventListener("popstate", updateActiveLinks);
-</script>
 
 <style>
   .navbar-link {
@@ -43,6 +22,7 @@ const { url, label } = Astro.props;
   }
   .navbar-link.active {
     font-weight: 700;
+    color: black;
   }
   .dot {
     display: block;
