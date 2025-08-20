@@ -3,13 +3,15 @@ import Presentation from "../molecules/Presentation.astro";
 ---
 
 <section class="relative flex h-[calc(100dvh-69px)] items-center py-5">
-  <span
-    aria-hidden="true"
-    class:list={[
-      "text-[clamp(8rem,18rem,320px)] font-bold whitespace-nowrap text-[#F6F6F6]",
-      "absolute left-[40%] z-[-1] block tracking-wider",
-    ]}>VALKYCODE</span
-  >
+  <div class="flex w-full items-center text-center absolute left-[40%] z-[-1] max-w-[55vw] overflow-hidden" aria-hidden="true">
+    <span
+      
+      class:list={[
+        "text-[clamp(8rem,18rem,320px)] font-bold whitespace-nowrap text-[#F6F6F6]",
+        " block tracking-wider",
+      ]}>VALKYCODE</span
+    >
+  </div>
 
   <Presentation />
 </section>
