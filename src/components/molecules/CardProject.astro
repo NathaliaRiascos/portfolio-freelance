@@ -19,7 +19,7 @@ if (!images[project.image])
 ---
 
 <article
-  class="group overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-lg"
+  class="group overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-lg flex flex-col"
 >
   <header class="relative overflow-hidden">
     <Image
@@ -32,18 +32,18 @@ if (!images[project.image])
     />
   </header>
 
-  <div class="p-6">
+  <div class="p-6 flex flex-col flex-1">
     <h3 class="mb-3 text-xl font-bold text-black">{project.title}</h3>
     <p class="mb-4 leading-relaxed text-gray-600">{project.description}</p>
 
     {
       project.tech.length > 0 && (
         <ul
-          class="mb-4 flex flex-nowrap gap-2"
+          class="mb-4 flex flex-wrap gap-2"
           aria-label="Tecnologías utilizadas"
         >
           {project.tech.map((tech) => (
-            <li class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-700">
+            <li class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-700 size-fit text-no-wrap">
               {tech}
             </li>
           ))}
@@ -51,7 +51,7 @@ if (!images[project.image])
       )
     }
 
-    <footer class="flex gap-4">
+    <footer class="flex gap-4 mt-auto">
       {
         project.liveUrl && (
           <a
