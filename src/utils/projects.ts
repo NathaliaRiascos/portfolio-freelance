@@ -19,4 +19,13 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://lipsticks-shop.pages.dev",
     githubUrl: "https://github.com/NathaliaRiascos/lipstick-s-shop",
   },
+  {
+    title: "Landing Page de Fotógrafo Profesional",
+    description:
+      "Portafolio de Alejandro Ruiz, fotógrafo especializado en bodas, retratos y moda. Descubre mis trabajos y contáctame para tu próximo proyecto.",
+    image: "/src/assets/landing-photographer.webp",
+    tech: ["Astro.js", "Tailwind CSS"],
+    liveUrl: "https://landing-photographer.pages.dev/preview.png",
+    githubUrl: "https://github.com/NathaliaRiascos/landing-photographer",
+  },
 ];
