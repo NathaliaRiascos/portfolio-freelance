@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
       "Portafolio de Alejandro Ruiz, fotógrafo especializado en bodas, retratos y moda. Descubre mis trabajos y contáctame para tu próximo proyecto.",
     image: "/src/assets/landing-photographer.webp",
     tech: ["Astro.js", "Tailwind CSS"],
-    liveUrl: "https://landing-photographer.pages.dev/preview.png",
+    liveUrl: "https://landing-photographer.pages.dev",
     githubUrl: "https://github.com/NathaliaRiascos/landing-photographer",
   },
 ];
